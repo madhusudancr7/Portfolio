@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Retinopathy Detection</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 2rem; text-align: center; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; }
+        form { margin-bottom: 2rem; }
+        input[type="file"] { border: 2px dashed #3498db; padding: 1rem; border-radius: 5px; cursor: pointer; }
+        button { background-color: #3498db; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #2980b9; }
+        .result { margin-top: 2rem; text-align: left; }
+        img { max-width: 100%; height: auto; border-radius: 5px; margin-bottom: 1rem; }
+        .result-text { font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetic Retinopathy Detection</h1>
+        <p>Upload a fundus image to check for signs of Diabetic Retinopathy.</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="upload" accept="image/*" required>
+            <br><br>
+            <button type="submit">Analyze Image</button>
+        </form>
+
+        {% if file_url %}
+            <div class="result">
+                <h2>Results</h2>
+                <img src="{{ file_url }}" alt="Uploaded Image">
+                <p class="result-text"><strong>Prediction:</strong> {{ result_class }}</p>
+                <p class="result-text"><strong>Confidence:</strong> {{ confidence }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

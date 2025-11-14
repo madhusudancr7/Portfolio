@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madhusudan R S | Senior Data Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Orbitron', 'sans-serif'],
+            },
+            colors: {
+              'background': '#101010',
+              'text-primary': '#E6E6E6',
+              'text-secondary': '#A8A8A8',
+              'accent': '#f97316', // Changed from red to orange
+              'card-bg': 'rgba(26, 26, 26, 0.2)', // Increased transparency
+              'border-color': 'rgba(255, 255, 255, 0.1)',
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+              'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'gradient-shift': 'gradientShift 5s ease infinite',
+              'float1': 'float1 10s ease-in-out infinite',
+              'float2': 'float2 12s ease-in-out infinite',
+              'float3': 'float3 9s ease-in-out infinite',
+              'float4': 'float4 11s ease-in-out infinite',
+              'typing-effect': 'typing 2.5s steps(15, end) forwards, blinkCaret 1s step-end infinite alternate',
+              'bounce-subtle': 'bounce-subtle 0.5s ease-out',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              gradientShift: {
+                '0%, 100%': { 'background-position': '0% 50%' },
+                '50%': { 'background-position': '100% 50%' },
+              },
+              float1: {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '50%': { transform: 'translate(15px, -25px) rotate(5deg)' },
+              },
+              float2: {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '50%': { transform: 'translate(-20px, 10px) rotate(-5deg)' },
+              },
+              float3: {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '50%': { transform: 'translate(25px, 15px) rotate(3deg)' },
+              },
+              float4: {
+                '0%, 100%': { transform: 'translate(0, 0) rotate(0deg)' },
+                '50%': { transform: 'translate(-10px, -15px) rotate(-3deg)' },
+              },
+              typing: {
+                'from': { width: '0' },
+                'to': { width: '100%' }
+              },
+              blinkCaret: {
+                'from, to': { borderColor: 'transparent' },
+                '50%': { borderColor: '#f97316' } // Changed from red to orange
+              },
+              'bounce-subtle': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-4px)' },
+              },
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        background-color: #101010;
+        color: #A8A8A8;
+      }
+      #root {
+        position: relative;
+        z-index: 2;
+      }
+      .interactive-pane {
+        background: radial-gradient(350px at var(--mouse-x) var(--mouse-y), rgba(249, 115, 22, 0.15), transparent 80%);
+        transition: opacity 0.3s ease-out;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="font-sans bg-background">
+    <div class="interactive-pane fixed inset-0 pointer-events-none z-10 opacity-0"></div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+        const pane = document.querySelector('.interactive-pane');
+        document.body.addEventListener('mousemove', (e) => {
+            pane.style.setProperty('--mouse-x', `${e.clientX}px`);
+            pane.style.setProperty('--mouse-y', `${e.clientY}px`);
+            pane.style.opacity = 1;
+        });
+        document.body.addEventListener('mouseleave', () => {
+             pane.style.opacity = 0;
+        });
+    </script>
+  </body>
+</html>

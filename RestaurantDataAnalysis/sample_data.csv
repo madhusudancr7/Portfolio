@@ -1,0 +1,12 @@
+
+restaurant_id,restaurant_name,cuisine,city,rating,total_revenue
+101,The Golden Spoon,Italian,New York,4.5,550000
+102,Spice Route,Indian,New York,4.2,480000
+103,Sushi Central,Japanese,Los Angeles,4.8,720000
+104,Taco Town,Mexican,Los Angeles,4.1,350000
+105,Bella Pasta,Italian,New York,4.6,620000
+106,Curry Palace,Indian,Los Angeles,3.9,320000
+107,Ramen House,Japanese,New York,4.7,680000
+108,El Fuego,Mexican,New York,4.3,410000
+109,The Olive Tree,Italian,Los Angeles,4.4,510000
+110,Mumbai Grill,Indian,New York,4.5,530000
