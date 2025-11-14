@@ -1,4 +1,4 @@
-import { SkillCategory, Experience, Project, EducationItem, Hobby } from './types';
+import { SkillCategory, Experience, Project, EducationItem, Hobby, Language } from './types';
 import GamingIcon from './components/icons/GamingIcon';
 import PlaneIcon from './components/icons/PlaneIcon';
 import TelescopeIcon from './components/icons/TelescopeIcon';
@@ -163,17 +163,42 @@ export const EDUCATION: EducationItem[] = [
     details: "CGPA: 7.1",
   },
   {
-    degree: "Science Stream (Pre-University)",
+    degree: "Pre-University (Science Stream)",
     institution: "ALVAS INSTITUTION",
     details: "Percentage: 89%",
   },
+  {
+    degree: "10th Standard",
+    institution: "GES School",
+    details: "Percentage: 83%",
+  },
 ];
 
-export const LANGUAGES_KNOWN: string[] = ["English", "Kannada", "Hindi"];
+export const LANGUAGES_KNOWN: Language[] = [
+    { name: "English", native: "English" },
+    { name: "Kannada", native: "ಕನ್ನಡ" },
+    { name: "Hindi", native: "हिन्दी" },
+];
 
 export const HOBBIES: Hobby[] = [
-    { name: "Gaming", icon: GamingIcon },
-    { name: "Travelling", icon: PlaneIcon },
-    { name: "Astrophile", icon: TelescopeIcon },
-    { name: "Learning about History", icon: BookIcon },
+    { 
+        name: "Gaming", 
+        icon: GamingIcon,
+        gifUrl: "https://i.giphy.com/media/5KF7TCgunEjvRxQJoZ/giphy.gif"
+    },
+    { 
+        name: "Travelling", 
+        icon: PlaneIcon,
+        gifUrl: "https://i.giphy.com/media/l2JhC53hG22n5a2Nq/giphy.gif"
+    },
+    { 
+        name: "Astrophile", 
+        icon: TelescopeIcon,
+        gifUrl: "https://i.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
+    },
+    { 
+        name: "Learning about History", 
+        icon: BookIcon,
+        gifUrl: "https://i.giphy.com/media/V86g22jQ2OKo7l024E/giphy.gif"
+    },
 ];

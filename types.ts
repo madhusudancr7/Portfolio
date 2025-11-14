@@ -43,4 +43,10 @@ export interface Hobby {
   name: string;
   // Fix: Use ComponentType instead of React.ComponentType.
   icon: ComponentType<{ className?: string }>;
+  gifUrl: string;
+}
+
+export interface Language {
+  name: string;
+  native: string;
 }

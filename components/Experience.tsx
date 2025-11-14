@@ -22,7 +22,7 @@ const Experience: React.FC = () => {
                   <button
                     onClick={() => setActiveIndex(index)}
                     data-interactive="true"
-                    className={`w-full text-left px-4 py-3 rounded-md font-medium transition-all duration-300 ${
+                    className={`w-full text-left px-4 py-3 rounded-md font-medium transition-all duration-300 text-lg ${
                       activeIndex === index
                         ? 'bg-accent/10 text-accent scale-105 shadow'
                         : 'text-text-secondary dark:text-dark-text-secondary hover:bg-accent/5'
@@ -47,7 +47,7 @@ const Experience: React.FC = () => {
                 <p className="font-mono text-sm font-semibold mt-1 mb-6 text-accent dark:text-accent">
                   {activeExperience.period}
                 </p>
-                <ul className="space-y-4 text-text-secondary dark:text-dark-text-secondary">
+                <ul className="space-y-4 text-text-secondary dark:text-dark-text-secondary text-lg">
                   {activeExperience.points.map((point, i) => (
                     <li 
                       key={i} 

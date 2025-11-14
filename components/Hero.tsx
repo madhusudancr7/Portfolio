@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
 
   const bgImageStyle = {
     transform: `translate3d(${-offset.x}px, ${-offset.y}px, 0)`,
-    backgroundImage: "url('https://images.pexels.com/photos/18285166/pexels-photo-18285166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')",
+    backgroundImage: "url('https://images.pexels.com/photos/18285166/pexels-photo-18285166.jpeg?auto=compress&cs=tinysrgb&w=1920')",
   };
   
   const textStyle = {
@@ -57,11 +57,11 @@ const Hero: React.FC = () => {
       
       {/* Main Content */}
       <div className="relative z-10 text-center px-4" style={textStyle}>
-        <h1 className="font-display text-7xl sm:text-9xl md:text-[10rem] lg:text-[12rem] font-bold text-white uppercase tracking-tighter leading-none mix-blend-difference opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-bold text-white uppercase tracking-tighter leading-none mix-blend-difference opacity-0 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           {NAME}
         </h1>
         <p 
-          className="font-mono text-xl sm:text-2xl md:text-3xl text-gray-300 mt-4 tracking-widest opacity-0 animate-fade-in-up"
+          className="font-mono text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mt-4 tracking-widest opacity-0 animate-fade-in-up"
           style={{ animationDelay: '0.8s' }}
         >
           // {TITLE}

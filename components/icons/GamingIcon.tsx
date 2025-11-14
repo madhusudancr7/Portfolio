@@ -3,13 +3,11 @@ import React from 'react';
 const GamingIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
     <title>Gaming</title>
-    <path d="M21 12V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h5"></path>
-    <path d="M12 18h4v4h-4z"></path>
-    <path d="M14 14v4"></path>
-    <path d="M6 12h2"></path>
-    <path d="M8 10v4"></path>
-    <path d="M16 20a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2v4h2z"></path>
-    <path d="M18 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
+    <line x1="6" x2="10" y1="12" y2="12"/>
+    <line x1="8" x2="8" y1="10" y2="14"/>
+    <line x1="15" x2="15.01" y1="13" y2="13"/>
+    <line x1="18" x2="18.01" y1="10" y2="10"/>
+    <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.01.15v5.52c0 .049.004.098.01.15a4 4 0 0 0 3.978 3.59h10.64a4 4 0 0 0 3.978-3.59c.006-.052.01-.101.01-.15v-5.52c0-.049-.004-.098-.01-.15a4 4 0 0 0-3.978-3.59z"/>
   </svg>
 );
 

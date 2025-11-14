@@ -47,9 +47,9 @@ const Section: React.FC<SectionProps> = ({ id, title, children }) => {
       <div className="flex items-center mb-12">
         <h2 
           data-interactive="true"
-          className={`group text-3xl md:text-4xl font-bold text-text-primary dark:text-dark-text-primary whitespace-nowrap opacity-0 ${isVisible ? 'animate-fade-in' : ''} transition-all duration-300 hover:scale-105 cursor-pointer`}
+          className={`group text-4xl md:text-5xl font-graffiti text-text-primary dark:text-dark-text-primary whitespace-nowrap opacity-0 ${isVisible ? 'animate-fade-in' : ''} transition-all duration-300 hover:scale-105 cursor-pointer`}
         >
-          <span className="text-accent font-mono text-2xl md:text-3xl"># </span>
+          <span className="text-accent font-mono text-3xl md:text-4xl"># </span>
           <span className="transition-colors duration-300 group-hover:text-accent">{title}</span>
         </h2>
         <div className={`w-full h-px bg-border-color dark:bg-dark-border-color ml-6 opacity-0 ${isVisible ? 'animate-fade-in' : ''}`} style={{ animationDelay: '0.2s' }}></div>

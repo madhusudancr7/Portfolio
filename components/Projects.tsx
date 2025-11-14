@@ -33,7 +33,7 @@ const Projects: React.FC = () => {
                   )}
                 </div>
               </div>
-              <p className="text-text-secondary dark:text-dark-text-secondary mb-6 line-clamp-2">{project.description}</p>
+              <p className="text-text-secondary dark:text-dark-text-secondary mb-6 line-clamp-2 text-lg">{project.description}</p>
             </div>
             <div className="flex flex-col sm:flex-row justify-between items-center mt-auto">
               <div className="flex flex-wrap gap-2 font-mono text-sm text-accent mb-4 sm:mb-0">
@@ -61,12 +61,12 @@ const Projects: React.FC = () => {
         <Modal isOpen={!!selectedProject} onClose={() => setSelectedProject(null)}>
           <div className="p-2">
             <h2 className="text-3xl font-bold text-text-primary dark:text-dark-text-primary mb-2">{selectedProject.title}</h2>
-            <p className="text-text-secondary dark:text-dark-text-secondary mb-6">{selectedProject.description}</p>
+            <p className="text-text-secondary dark:text-dark-text-secondary mb-6 text-lg">{selectedProject.description}</p>
             
             <h3 className="text-xl font-bold text-text-primary dark:text-dark-text-primary mb-4">Key Features</h3>
-            <ul className="space-y-3 list-disc list-inside text-text-secondary dark:text-dark-text-secondary mb-6">
+            <ul className="space-y-3 list-disc list-inside text-text-secondary dark:text-dark-text-secondary mb-6 text-lg">
               {selectedProject.points?.map((point, i) => (
-                <li key={i} className="relative pl-6 leading-relaxed">
+                <li key={i} className="relative pl-6 leading-loose">
                   <span className="absolute left-0 top-1 text-accent">▹</span>
                   {point}
                 </li>
