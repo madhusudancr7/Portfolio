@@ -63,7 +63,7 @@ const Experience: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 
