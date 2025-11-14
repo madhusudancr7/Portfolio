@@ -1,7 +1,11 @@
+// Fix: Import ComponentType from react to resolve 'React' namespace error.
+import type { ComponentType } from 'react';
+
 export interface Skill {
   name: string;
   level: number;
-  icon?: React.ComponentType<{ className?: string }>;
+  // Fix: Use ComponentType instead of React.ComponentType.
+  icon?: ComponentType<{ className?: string }>;
 }
 
 export interface SkillCategory {
@@ -37,5 +41,6 @@ export interface EducationItem {
 
 export interface Hobby {
   name: string;
-  icon: React.ComponentType<{ className?: string }>;
+  // Fix: Use ComponentType instead of React.ComponentType.
+  icon: ComponentType<{ className?: string }>;
 }

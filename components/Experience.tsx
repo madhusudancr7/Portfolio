@@ -1,53 +1,69 @@
+
 import React, { useState } from 'react';
 import { EXPERIENCES } from '../constants';
 import Section from './Section';
 
 const Experience: React.FC = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeExperience = EXPERIENCES[activeIndex];
 
   return (
     <Section id="experience" title="Work Experience">
-      <div className="bg-card-bg backdrop-blur-sm border border-border-color rounded-xl p-8">
-        <div className="flex flex-col md:flex-row gap-8 min-h-[400px]">
-          <div className="flex flex-row md:flex-col md:w-1/4 overflow-x-auto -mb-px border-b-2 md:border-b-0 md:border-l-2 border-border-color/50">
-            {EXPERIENCES.map((exp, index) => (
-              <button
-                key={exp.company}
-                onClick={() => setActiveTab(index)}
-                className={`text-left p-4 w-full transition-all duration-300 whitespace-nowrap font-medium text-text-secondary relative ${
-                  activeTab === index
-                    ? 'text-accent'
-                    : 'hover:bg-card-bg/30 hover:text-text-primary'
-                }`}
-              >
-                {activeTab === index && <div className="absolute left-[-2px] top-0 h-full w-0.5 bg-accent"></div>}
-                {exp.company}
-              </button>
-            ))}
+      <div 
+        className="bg-card-bg dark:bg-dark-card-bg p-6 md:p-8 rounded-xl border border-border-color dark:border-dark-border-color backdrop-blur-sm transition-all duration-300 opacity-0 animate-fade-in-up"
+        style={{ animationDelay: `0.1s` }}
+      >
+        <div className="flex flex-col md:flex-row gap-8 min-h-[450px]">
+          {/* Left side: Company tabs */}
+          <div className="md:w-1/3 flex-shrink-0 border-b-2 md:border-b-0 md:border-r-2 border-border-color dark:border-dark-border-color pb-4 md:pb-0 md:pr-8">
+            <ul className="space-y-2">
+              {EXPERIENCES.map((exp, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => setActiveIndex(index)}
+                    data-interactive="true"
+                    className={`w-full text-left px-4 py-3 rounded-md font-medium transition-all duration-300 ${
+                      activeIndex === index
+                        ? 'bg-accent/10 text-accent scale-105 shadow'
+                        : 'text-text-secondary dark:text-dark-text-secondary hover:bg-accent/5'
+                    }`}
+                    aria-selected={activeIndex === index}
+                    role="tab"
+                  >
+                    {exp.company}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="md:w-3/4">
-            {EXPERIENCES.map((exp, index) => (
-              <div key={exp.company} className={`transition-opacity duration-500 ${activeTab === index ? 'opacity-100' : 'opacity-0 absolute invisible'}`}>
-                  <div>
-                      <h3 className="text-2xl font-bold text-text-primary">
-                          {exp.role} <span className="text-accent">@ {exp.company}</span>
-                      </h3>
-                      <p className="font-mono text-sm mt-1 mb-6 text-text-secondary">{exp.period}</p>
-                      <ul className="space-y-4 list-disc list-inside text-text-secondary">
-                          {exp.points.map((point, i) => (
-                          <li key={i} className="relative pl-6 leading-loose">
-                              <span className="absolute left-0 top-1 text-accent">▹</span>
-                              {point}
-                          </li>
-                          ))}
-                      </ul>
-                  </div>
+
+          {/* Right side: Experience details */}
+          <div className="md:w-2/3" role="tabpanel">
+            {activeExperience && (
+              <div key={activeIndex} className="animate-fade-in">
+                <h3 className="text-2xl font-bold text-text-primary dark:text-dark-text-primary">
+                  {activeExperience.role} <span className="text-accent">@ {activeExperience.company}</span>
+                </h3>
+                <p className="font-mono text-sm font-semibold mt-1 mb-6 text-accent dark:text-accent">
+                  {activeExperience.period}
+                </p>
+                <ul className="space-y-4 text-text-secondary dark:text-dark-text-secondary">
+                  {activeExperience.points.map((point, i) => (
+                    <li 
+                      key={i} 
+                      className="relative pl-6 leading-loose"
+                    >
+                      <span className="absolute left-0 top-1 text-accent" aria-hidden="true">▹</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 };
 

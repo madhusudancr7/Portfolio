@@ -9,10 +9,11 @@ const Hobbies: React.FC = () => {
         {HOBBIES.map((hobby) => (
           <div 
             key={hobby.name} 
-            className="bg-card-bg/20 p-8 rounded-xl border border-border-color flex flex-col items-center justify-center transition-all duration-300 group hover:border-accent backdrop-blur-sm"
+            data-interactive="true"
+            className="bg-card-bg dark:bg-dark-card-bg p-8 rounded-xl border border-border-color dark:border-dark-border-color flex flex-col items-center justify-center transition-all duration-300 group hover:border-accent backdrop-blur-sm"
           >
-            <hobby.icon className="w-16 h-16 text-text-secondary mb-4 transition-colors duration-300 group-hover:text-accent" />
-            <h3 className="text-lg font-bold text-text-primary">{hobby.name}</h3>
+            <hobby.icon className="w-16 h-16 text-text-secondary dark:text-dark-text-secondary mb-4 transition-colors duration-300 group-hover:text-accent" />
+            <h3 className="text-lg font-bold text-text-primary dark:text-dark-text-primary">{hobby.name}</h3>
           </div>
         ))}
       </div>

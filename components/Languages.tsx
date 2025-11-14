@@ -9,7 +9,7 @@ const Languages: React.FC = () => {
         {LANGUAGES_KNOWN.map((language) => (
           <div 
             key={language} 
-            className="bg-card-bg/20 border border-border-color text-text-primary text-xl font-medium px-8 py-4 rounded-xl backdrop-blur-sm"
+            className="bg-card-bg dark:bg-dark-card-bg border border-border-color dark:border-dark-border-color text-text-primary dark:text-dark-text-primary text-xl font-medium px-8 py-4 rounded-xl backdrop-blur-sm"
           >
             {language}
           </div>

@@ -10,8 +10,12 @@ export const TITLE = "Senior Data Engineer";
 export const EMAIL = "m4dhusudanr5@gmail.com";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/madhusudan-r-s-b0b02a98";
 export const GITHUB_URL = "https://github.com/madhusudancr7/viper";
+export const TWITTER_URL = "https://twitter.com/yourprofile";
+export const MEDIUM_URL = "https://medium.com/@yourprofile";
+export const INSTAGRAM_URL = "https://instagram.com/yourprofile";
 export const PHONE = "+91 8867478017";
 export const LOCATION = "Belagavi, Karnataka";
+export const RESUME_URL = "resume.html"; // Placeholder for resume link
 
 
 export const SUMMARY = "A results-oriented Senior Data Engineer with 4 years of experience architecting and delivering end-to-end data solutions. Proficient in designing scalable data pipelines and reusable, metadata-driven ETL frameworks using PySpark and Apache Airflow in cloud-native environments. Adept at performance tuning, CI/CD automation, and collaborating with cross-functional teams to transform complex business problems into high-performance data systems that drive analytics and innovation.";

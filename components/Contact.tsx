@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Section from './Section';
+import SpinnerIcon from './icons/SpinnerIcon';
 
 const Contact: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -57,11 +58,17 @@ const Contact: React.FC = () => {
     return (
         <Section id="contact" title="Get In Touch">
             <div className="max-w-2xl mx-auto text-center">
-                <p className="mb-10 text-lg text-text-secondary">
+                <p 
+                    className="mb-10 text-lg text-text-secondary dark:text-dark-text-secondary opacity-0 animate-fade-in-up"
+                    style={{ animationDelay: '0.2s' }}
+                >
                     I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                 </p>
 
-                <div className="bg-card-bg/20 p-8 rounded-xl border border-border-color backdrop-blur-sm">
+                <div 
+                    className="bg-card-bg dark:bg-dark-card-bg p-8 rounded-xl border border-border-color dark:border-dark-border-color backdrop-blur-sm opacity-0 animate-fade-in-up"
+                    style={{ animationDelay: '0.4s' }}
+                >
                     {isSubmitted ? (
                         <div className="bg-accent/10 border border-accent text-accent px-4 py-3 rounded-md" role="alert">
                             <strong className="font-bold">Thank you! </strong>
@@ -74,7 +81,7 @@ const Contact: React.FC = () => {
                                     <input 
                                         type="text" name="name" placeholder="Your Name"
                                         value={formData.name} onChange={handleChange}
-                                        className="w-full bg-card-bg/30 border border-border-color text-text-primary p-4 rounded-md placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                        className="w-full bg-card-bg/30 dark:bg-dark-card-bg/30 border border-border-color dark:border-dark-border-color text-text-primary dark:text-dark-text-primary p-4 rounded-md placeholder:text-text-secondary/60 dark:placeholder:text-dark-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                                         aria-label="Your Name"
                                     />
                                     {errors.name && <p className="text-red-500 text-sm mt-1 text-left">{errors.name}</p>}
@@ -83,7 +90,7 @@ const Contact: React.FC = () => {
                                     <input 
                                         type="email" name="email" placeholder="Your Email"
                                         value={formData.email} onChange={handleChange}
-                                        className="w-full bg-card-bg/30 border border-border-color text-text-primary p-4 rounded-md placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                        className="w-full bg-card-bg/30 dark:bg-dark-card-bg/30 border border-border-color dark:border-dark-border-color text-text-primary dark:text-dark-text-primary p-4 rounded-md placeholder:text-text-secondary/60 dark:placeholder:text-dark-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                                         aria-label="Your Email"
                                     />
                                     {errors.email && <p className="text-red-500 text-sm mt-1 text-left">{errors.email}</p>}
@@ -93,16 +100,16 @@ const Contact: React.FC = () => {
                                 <input 
                                     type="text" name="subject" placeholder="Subject"
                                     value={formData.subject} onChange={handleChange}
-                                    className="w-full bg-card-bg/30 border border-border-color text-text-primary p-4 rounded-md placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                    className="w-full bg-card-bg/30 dark:bg-dark-card-bg/30 border border-border-color dark:border-dark-border-color text-text-primary dark:text-dark-text-primary p-4 rounded-md placeholder:text-text-secondary/60 dark:placeholder:text-dark-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                                     aria-label="Subject"
-                                />
+                                 />
                                 {errors.subject && <p className="text-red-500 text-sm mt-1 text-left">{errors.subject}</p>}
                             </div>
                             <div>
                                 <textarea
                                     name="message" placeholder="Your Message" rows={5}
                                     value={formData.message} onChange={handleChange}
-                                    className="w-full bg-card-bg/30 border border-border-color text-text-primary p-4 rounded-md placeholder:text-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
+                                    className="w-full bg-card-bg/30 dark:bg-dark-card-bg/30 border border-border-color dark:border-dark-border-color text-text-primary dark:text-dark-text-primary p-4 rounded-md placeholder:text-text-secondary/60 dark:placeholder:text-dark-text-secondary/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-all"
                                     aria-label="Your Message"
                                 ></textarea>
                                 {errors.message && <p className="text-red-500 text-sm mt-1 text-left">{errors.message}</p>}
@@ -110,8 +117,10 @@ const Contact: React.FC = () => {
                             <button 
                                 type="submit"
                                 disabled={isSubmitting}
-                                className={`bg-accent text-white px-8 py-3 rounded-md font-bold text-lg transition-all duration-300 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-accent shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/40 hover:opacity-90`}
+                                data-interactive="true"
+                                className={`flex justify-center items-center gap-2 bg-accent text-white px-8 py-3 rounded-md font-bold text-lg transition-all duration-300 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background dark:focus:ring-offset-dark-background focus:ring-accent shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/40 hover:opacity-90 w-full sm:w-auto mx-auto`}
                             >
+                                {isSubmitting && <SpinnerIcon className="w-5 h-5 animate-spin" />}
                                 {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>

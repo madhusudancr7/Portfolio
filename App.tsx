@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -8,40 +9,32 @@ import Education from './components/Education';
 import Footer from './components/Footer';
 import Languages from './components/Languages';
 import Hobbies from './components/Hobbies';
+import Contact from './components/Contact';
+import BackToTopButton from './components/BackToTopButton';
+import Header from './components/Header';
+import CursorLight from './components/CursorLight';
 
 const App: React.FC = () => {
-  useEffect(() => {
-    const handleSmoothScroll = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      const anchor = target.closest('a[href^="#"]');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-      if (anchor) {
-        event.preventDefault();
-        const href = anchor.getAttribute('href');
-        
-        if (href && href.length > 1) {
-          const element = document.getElementById(href.substring(1));
-          if (element) {
-            element.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-            });
-          }
-        }
-      }
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
     };
 
-    document.addEventListener('click', handleSmoothScroll);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener('click', handleSmoothScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      <CursorLight position={mousePosition} />
+      <Header />
+      <Hero />
       <main className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
-        <Hero />
         <About />
         <Skills />
         <Experience />
@@ -49,8 +42,10 @@ const App: React.FC = () => {
         <Education />
         <Languages />
         <Hobbies />
+        <Contact />
       </main>
       <Footer />
+      <BackToTopButton />
     </div>
   );
 };
