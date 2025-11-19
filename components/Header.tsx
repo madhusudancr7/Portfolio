@@ -1,7 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import SunIcon from './icons/SunIcon';
-import MoonIcon from './icons/MoonIcon';
 import MenuIcon from './icons/MenuIcon';
 import CloseIcon from './icons/CloseIcon';
 import { NAME } from '../constants';
@@ -15,23 +13,15 @@ const navLinks = [
 ];
 
 const Header: React.FC = () => {
-  const [theme, setTheme] = useState(
-    () => typeof window !== 'undefined' && localStorage.theme === 'dark' ? 'dark' : 'light'
-  );
   const [activeSection, setActiveSection] = useState<string>('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Theme effect
+  // Enforce Dark Mode
   useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [theme]);
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  }, []);
   
   // Scroll visibility effect
   useEffect(() => {
@@ -71,10 +61,6 @@ const Header: React.FC = () => {
       });
     };
   }, []);
-
-  const handleThemeSwitch = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -144,24 +130,14 @@ const Header: React.FC = () => {
             })}
           </nav>
           
-          {/* Desktop Divider */}
-          <div className="hidden md:block w-px h-6 bg-border-color dark:bg-dark-border-color"></div>
+          {/* Desktop Divider (only visible if we had more items right, keeping for structure if needed later or removing) */}
+          {/* <div className="hidden md:block w-px h-6 bg-border-color dark:bg-dark-border-color"></div> */}
 
-          {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center gap-2">
-            <button 
-                onClick={handleThemeSwitch} 
-                data-interactive="true"
-                className={`p-2 rounded-full transition-colors text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-accent focus:outline-none`}
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            >
-                {theme === 'dark' ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
-            </button>
-
-            {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Button */}
+          <div className="flex items-center gap-2 md:hidden">
             <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 text-text-primary dark:text-dark-text-primary focus:outline-none"
+                className="p-2 text-text-primary dark:text-dark-text-primary focus:outline-none"
                 aria-label="Toggle menu"
             >
                 {isMenuOpen ? <CloseIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}

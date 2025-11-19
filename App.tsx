@@ -29,11 +29,12 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative bg-dark-background text-dark-text-primary">
       <CursorLight position={mousePosition} />
       <Header />
       <Hero />
-      <main className="container mx-auto px-6 md:px-10 lg:px-16 xl:px-24">
+      {/* Removed 'container mx-auto' from main to allow sections to be full width */}
+      <main className="w-full relative z-10">
         <About />
         <Skills />
         <Experience />

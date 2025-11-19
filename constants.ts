@@ -1,3 +1,4 @@
+
 import { SkillCategory, Experience, Project, EducationItem, Hobby, Language } from './types';
 import GamingIcon from './components/icons/GamingIcon';
 import PlaneIcon from './components/icons/PlaneIcon';
@@ -9,12 +10,13 @@ export const NAME = "Madhusudan R S";
 export const TITLE = "Senior Data Engineer";
 export const EMAIL = "m4dhusudanr5@gmail.com";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/madhusudan-r-s-b0b02a98";
-export const GITHUB_URL = "https://github.com/madhusudancr7/viper";
-export const TWITTER_URL = "https://twitter.com/yourprofile";
-export const MEDIUM_URL = "https://medium.com/@yourprofile";
-export const INSTAGRAM_URL = "https://instagram.com/yourprofile";
+export const GITHUB_URL = "https://github.com/madhusudancr7";
+export const TWITTER_URL = "https://x.com/m4ddy71?s=21";
+export const MEDIUM_URL = "https://medium.com/@johnmadhusudan7";
+export const INSTAGRAM_URL = "https://www.instagram.com/_m.4.7_?igsh=MXJ4YXVsemFrcW54Mw%3D%3D&utm_source=qr";
 export const PHONE = "+91 8867478017";
 export const LOCATION = "Belagavi, Karnataka";
+export const LOCATION_URL = "https://www.google.com/maps/dir/Belagavi,+Karnataka/Belagavi,+Karnataka/@15.8667918,74.4672411,13z/data=!4m13!4m12!1m5!1m1!1s0x3bbf669f5095362f:0x7e34b31edcdefb5f!2m2!1d74.5129177!2d15.8608974!1m5!1m1!1s0x3bbf669f5095362f:0x7e34b31edcdefb5f!2m2!1d74.5129177!2d15.8608974?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D";
 export const RESUME_URL = "resume.html"; // Placeholder for resume link
 
 
