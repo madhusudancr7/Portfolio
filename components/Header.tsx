@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import SunIcon from './icons/SunIcon';
 import MoonIcon from './icons/MoonIcon';
+import MenuIcon from './icons/MenuIcon';
+import CloseIcon from './icons/CloseIcon';
 import { NAME } from '../constants';
 
 const navLinks = [
@@ -10,7 +12,6 @@ const navLinks = [
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
   { name: 'Education', href: '#education' },
-  { name: 'Contact', href: '#contact' },
 ];
 
 const Header: React.FC = () => {
@@ -19,6 +20,7 @@ const Header: React.FC = () => {
   );
   const [activeSection, setActiveSection] = useState<string>('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Theme effect
   useEffect(() => {
@@ -76,6 +78,7 @@ const Header: React.FC = () => {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setIsMenuOpen(false);
     const targetId = href.substring(1);
     
     if (href === '#hero') {
@@ -104,18 +107,22 @@ const Header: React.FC = () => {
     <header 
       className={`fixed top-4 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}
     >
-      <div className="container mx-auto px-6">
-        <div className="w-fit mx-auto flex items-center gap-4 rounded-full p-2 shadow-lg bg-card-bg/80 dark:bg-dark-card-bg/80 backdrop-blur-lg border border-border-color dark:border-dark-border-color">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="w-full md:w-fit mx-auto flex items-center justify-between md:justify-center gap-4 rounded-full p-3 md:p-2 shadow-lg bg-card-bg/90 dark:bg-dark-card-bg/90 backdrop-blur-lg border border-border-color dark:border-dark-border-color pointer-events-auto">
+          
+          {/* Logo */}
           <a 
             href="#hero" 
             onClick={(e) => handleNavClick(e, '#hero')} 
-            className="font-display text-xl font-bold pl-2 text-text-primary dark:text-dark-text-primary hover:text-accent transition-colors"
+            className="font-display text-lg md:text-xl font-bold pl-2 text-text-primary dark:text-dark-text-primary hover:text-accent transition-colors"
           >
             {NAME.split(' ')[0]} <span className="text-accent">{NAME.split(' ')[2]}</span>
           </a>
           
-          <div className="w-px h-6 bg-border-color dark:bg-dark-border-color"></div>
+          {/* Desktop Divider */}
+          <div className="hidden md:block w-px h-6 bg-border-color dark:bg-dark-border-color"></div>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href.substring(1);
@@ -137,17 +144,55 @@ const Header: React.FC = () => {
             })}
           </nav>
           
-          <div className="w-px h-6 bg-border-color dark:bg-dark-border-color"></div>
+          {/* Desktop Divider */}
+          <div className="hidden md:block w-px h-6 bg-border-color dark:bg-dark-border-color"></div>
 
-          <button 
-            onClick={handleThemeSwitch} 
-            data-interactive="true"
-            className={`p-2 rounded-full transition-colors text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent`}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            {theme === 'dark' ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
-          </button>
+          {/* Theme Toggle & Mobile Menu Button */}
+          <div className="flex items-center gap-2">
+            <button 
+                onClick={handleThemeSwitch} 
+                data-interactive="true"
+                className={`p-2 rounded-full transition-colors text-text-secondary dark:text-dark-text-secondary hover:text-accent dark:hover:text-accent focus:outline-none`}
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+                {theme === 'dark' ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
+            </button>
+
+            {/* Mobile Menu Toggle */}
+            <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="md:hidden p-2 text-text-primary dark:text-dark-text-primary focus:outline-none"
+                aria-label="Toggle menu"
+            >
+                {isMenuOpen ? <CloseIcon className="w-6 h-6" /> : <MenuIcon className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+            <div className="absolute top-full left-4 right-4 mt-2 p-4 bg-card-bg dark:bg-dark-card-bg backdrop-blur-xl rounded-2xl border border-border-color dark:border-dark-border-color shadow-2xl md:hidden animate-fade-in-up pointer-events-auto">
+                <nav className="flex flex-col gap-2">
+                    {navLinks.map((link) => {
+                        const isActive = activeSection === link.href.substring(1);
+                        return (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={(e) => handleNavClick(e, link.href)}
+                                className={`py-3 px-4 rounded-xl text-center font-medium transition-all duration-200 ${
+                                    isActive 
+                                    ? 'bg-accent/20 text-accent' 
+                                    : 'text-text-secondary dark:text-dark-text-secondary hover:bg-accent/10 hover:text-accent'
+                                }`}
+                            >
+                                {link.name}
+                            </a>
+                        );
+                    })}
+                </nav>
+            </div>
+        )}
       </div>
     </header>
   );

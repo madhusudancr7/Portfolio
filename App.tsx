@@ -9,7 +9,6 @@ import Education from './components/Education';
 import Footer from './components/Footer';
 import Languages from './components/Languages';
 import Hobbies from './components/Hobbies';
-import Contact from './components/Contact';
 import BackToTopButton from './components/BackToTopButton';
 import Header from './components/Header';
 import CursorLight from './components/CursorLight';
@@ -42,7 +41,6 @@ const App: React.FC = () => {
         <Education />
         <Languages />
         <Hobbies />
-        <Contact />
       </main>
       <Footer />
       <BackToTopButton />

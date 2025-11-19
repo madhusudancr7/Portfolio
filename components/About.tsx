@@ -33,24 +33,16 @@ const About: React.FC = () => {
     <section 
       id="about" 
       ref={sectionRef}
-      className={`py-20 md:py-32 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
+      className={`py-16 md:py-32 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
     >
        <div className={isVisible ? 'animate-fade-in-up' : ''}>
-         <p className="font-mono text-accent mb-4 text-lg">// Intro</p>
-         <h2 className="text-3xl md:text-5xl font-bold leading-tight text-text-primary dark:text-dark-text-primary max-w-4xl mb-8">
-           I'm a versatile <span className="text-accent">data engineer</span> who partners with teams to turn <span className="text-accent">complex problems</span> into high-performance data systems that drive <span className="text-accent">analytics and innovation.</span>
+         <p className="font-mono text-accent mb-4 text-base md:text-lg">// Intro</p>
+         <h2 className="text-2xl md:text-5xl font-bold leading-tight text-text-primary dark:text-dark-text-primary max-w-5xl mb-6 md:mb-8">
+           Results-oriented <span className="text-accent">Senior Data Engineer</span> with 4 years of experience designing and delivering <span className="text-accent">end-to-end data solutions</span> in cloud-native environments.
          </h2>
-         <p className="text-lg text-text-secondary dark:text-dark-text-secondary max-w-2xl mb-12">
-            I focus on clear interfaces, sharp decisions, and fast execution—whether it's architecting pipelines, tuning performance, or automating deployments—delivering robust and effective solutions from start to finish.
+         <p className="text-base md:text-lg text-text-secondary dark:text-dark-text-secondary max-w-4xl mb-8 md:mb-12 leading-relaxed">
+            Proficient in designing scalable data pipelines and reusable, metadata-driven ETL frameworks using PySpark and Apache Airflow. Expert in performance tuning, CI/CD automation, and transforming complex business requirements into high-performance data systems.
          </p>
-         <a 
-            href="#projects" 
-            data-interactive="true"
-            className="group font-semibold text-lg text-text-primary dark:text-dark-text-primary inline-flex items-center gap-2"
-          >
-           <span>See My Work</span>
-           <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
-         </a>
       </div>
     </section>
   );

@@ -184,21 +184,17 @@ export const HOBBIES: Hobby[] = [
     { 
         name: "Gaming", 
         icon: GamingIcon,
-        gifUrl: "https://i.giphy.com/media/5KF7TCgunEjvRxQJoZ/giphy.gif"
     },
     { 
         name: "Travelling", 
         icon: PlaneIcon,
-        gifUrl: "https://i.giphy.com/media/l2JhC53hG22n5a2Nq/giphy.gif"
     },
     { 
         name: "Astrophile", 
         icon: TelescopeIcon,
-        gifUrl: "https://i.giphy.com/media/3o7bu3XilJ5BOiSGic/giphy.gif"
     },
     { 
         name: "Learning about History", 
         icon: BookIcon,
-        gifUrl: "https://i.giphy.com/media/V86g22jQ2OKo7l024E/giphy.gif"
     },
 ];
