@@ -1,17 +1,15 @@
 
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, useEffect, useRef } from 'react';
 import { NAME, TITLE, LINKEDIN_URL, GITHUB_URL, INSTAGRAM_URL, EMAIL, PHONE, LOCATION, TWITTER_URL, MEDIUM_URL, LOCATION_URL } from '../constants';
 import LinkedInIcon from './icons/LinkedInIcon';
 import GitHubIcon from './icons/GitHubIcon';
 import InstagramIcon from './icons/InstagramIcon';
 import MailIcon from './icons/MailIcon';
-import PhoneIcon from './icons/PhoneIcon';
-import LocationIcon from './icons/LocationIcon';
 import TwitterIcon from './icons/TwitterIcon';
 import MediumIcon from './icons/MediumIcon';
 import TechBackground from './TechBackground';
-import { useEffect, useRef } from 'react';
 
+// Socials for Hero
 const socialLinks = [
   { href: LINKEDIN_URL, icon: LinkedInIcon, name: 'LinkedIn' },
   { href: GITHUB_URL, icon: GitHubIcon, name: 'GitHub' },
@@ -21,16 +19,8 @@ const socialLinks = [
   { href: `mailto:${EMAIL}`, icon: MailIcon, name: 'Email' },
 ];
 
-const contactDetails = [
-  { href: `tel:${PHONE}`, icon: PhoneIcon, name: PHONE },
-  { href: LOCATION_URL, icon: LocationIcon, name: LOCATION, isLocation: true },
-];
-
-// Hero Palette: Vibrant Golden, Amber, Orange + Crimson, Bright Yellow, Clumsy Colors
-const HERO_PALETTE = ['#FFD700', '#FF8C00', '#FF4500', '#DAA520', '#DC143C', '#FFB700', '#e11d48', '#ffff00'];
-
-// Helper component for Scrambling Text
-const ScrambleText: React.FC<{ text: string; className?: string; style?: React.CSSProperties }> = ({ text, className, style }) => {
+// Scramble Text Helper
+const ScrambleText: React.FC<{ text: string; className?: string }> = ({ text, className }) => {
     const [displayText, setDisplayText] = useState(text);
     const [isHovered, setIsHovered] = useState(false);
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -44,24 +34,19 @@ const ScrambleText: React.FC<{ text: string; className?: string; style?: React.C
             intervalRef.current = setInterval(() => {
                 setDisplayText(prev => 
                     prev.split('').map((char, index) => {
-                        if (index < iteration) {
-                            return text[index];
-                        }
+                        if (index < iteration) return text[index];
                         return chars[Math.floor(Math.random() * chars.length)];
                     }).join('')
                 );
-
                 if (iteration >= text.length) {
                     if (intervalRef.current) clearInterval(intervalRef.current);
                 }
-                
                 iteration += 1 / 3;
             }, 30);
         } else {
              setDisplayText(text);
              if (intervalRef.current) clearInterval(intervalRef.current);
         }
-
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
         };
@@ -70,7 +55,6 @@ const ScrambleText: React.FC<{ text: string; className?: string; style?: React.C
     return (
         <span 
             className={className}
-            style={style}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
@@ -80,140 +64,83 @@ const ScrambleText: React.FC<{ text: string; className?: string; style?: React.C
 };
 
 const Hero: React.FC = () => {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
-    const { clientX, clientY } = e;
-    const { innerWidth: width, innerHeight: height } = window;
-
-    const moveX = (clientX / width - 0.5) * 20; 
-    const moveY = (clientY / height - 0.5) * 20;
-    setOffset({ x: moveX, y: moveY });
-  };
-  
-  const containerStyle = {
-     transform: `translate3d(${offset.x * -0.5}px, ${offset.y * -0.5}px, 0)`,
-  }
-
-  const renderName = () => {
-    return NAME.split('').map((char, charIndex) => (
-        <span
-        key={charIndex}
-        className="hover-char inline-block transition-all duration-200 ease-out cursor-default hover:text-accent select-none"
-        style={{ 
-            animationDelay: `${0.2 + charIndex * 0.05}s`,
-            marginRight: char === ' ' ? '1rem' : '0' 
-        }}
-        >
-        {char === ' ' ? '\u00A0' : char}
-        </span>
-    ));
-  };
-
   return (
-    <section 
-      id="hero" 
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dark-background"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Full screen background for hero with forceActive to ensure it shows on load */}
-      {/* Added interactive={true} to enable hover effect only in Hero */}
-      {/* Set speed=1.0 for faster animation than before */}
-      <TechBackground 
-        colors={HERO_PALETTE} 
-        forceActive={true} 
-        interactive={true} 
-        interactionStrength={0.3}
-        speed={1.0} 
-      />
+    <section id="hero" className="relative h-screen w-full overflow-hidden bg-[#050505] flex flex-col justify-center items-center">
       
-      <div className="absolute inset-0 bg-dark-background/20 z-0 pointer-events-none"></div>
+      {/* Background Layer - Fluid Artifact Behind Text */}
+      <div className="absolute inset-0 z-0">
+         <TechBackground variant="central-orb" interactive forceActive />
+      </div>
 
-      <div 
-        className="relative z-10 w-full max-w-[95%] flex items-center justify-center"
-        style={containerStyle}
-      >
-        <div className="
-            w-full
-            p-4 sm:p-10
-            flex flex-col items-center text-center
-            transition-all duration-500
-        ">
+      {/* --- MAIN CENTERED CONTENT --- */}
+      <div className="relative z-10 text-center cursor-default group">
+         {/* Name: Single Line, White (visible on dark), Hover Effect */}
+         <h1 
+            className="font-display font-black text-white tracking-tighter leading-none whitespace-nowrap relative inline-block"
+            style={{ fontSize: 'clamp(3rem, 10vw, 12rem)' }}
+         >
+            {NAME}
             
-            {/* Name - HUGE */}
-            <div className="relative group pointer-events-auto mb-8 w-full overflow-visible">
-                <h1 
-                    className="font-display font-bold text-white uppercase tracking-tighter leading-none opacity-0 animate-fade-in whitespace-nowrap drop-shadow-2xl"
-                    style={{ 
-                        animationDelay: '0.1s',
-                        fontSize: 'clamp(2.5rem, 8vw, 9rem)' 
-                    }}
-                >
-                {renderName()}
-                </h1>
-            </div>
+            {/* Liquid Oil Underline Effect */}
+            <span className="absolute -bottom-2 left-0 w-full h-[10px] md:h-[20px] bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 rounded-full origin-left transform scale-x-0 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100 opacity-80 blur-[2px]"></span>
+            <span className="absolute -bottom-2 left-0 w-full h-[10px] md:h-[20px] bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 rounded-full origin-left transform scale-x-0 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-x-100 mix-blend-overlay"></span>
+         </h1>
+      </div>
 
-            {/* Title - No Box, Glassy Underline */}
-            <div className="mb-12 pointer-events-auto relative group">
-                <p 
-                    className="font-mono text-lg sm:text-xl md:text-3xl text-accent tracking-[0.15em] opacity-0 animate-fade-in-up py-2"
-                    style={{ animationDelay: '0.6s' }}
-                >
-                    &lt; <ScrambleText text={TITLE} /> /&gt;
-                </p>
-                {/* Modern Glassy Underline */}
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gray-500 to-transparent group-hover:via-accent transition-all duration-500"></div>
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-accent blur-[2px] group-hover:w-1/2 transition-all duration-700 opacity-0 group-hover:opacity-100"></div>
-            </div>
+      {/* --- CORNER ANCHORS --- */}
+      
+      {/* Bottom Left: Location / Contact */}
+      <div className="absolute bottom-8 left-6 md:bottom-12 md:left-12 z-20 flex flex-col gap-3 pointer-events-auto text-left">
+         <a href={LOCATION_URL} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 text-gray-400 hover:text-white transition-colors">
+            <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+            <span className="font-mono text-sm md:text-base uppercase tracking-widest border-b border-transparent group-hover:border-accent pb-0.5 transition-all">
+                {LOCATION}
+            </span>
+         </a>
+         {/* Phone Number - Big & Bold */}
+         <a href={`tel:${PHONE}`} className="text-gray-100 hover:text-accent font-mono text-2xl md:text-4xl font-black tracking-tight transition-colors">
+            {PHONE}
+         </a>
+      </div>
 
-            {/* Social Icons - Smooth Pop-in Zoom */}
-            <div 
-            className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 mb-12 opacity-0 animate-fade-in-up pointer-events-auto"
-            style={{ animationDelay: '0.8s' }}
-            >
-            {socialLinks.map(({ href, icon: Icon, name }) => (
-                    <a
-                    key={name}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative p-3 transition-transform duration-300 hover:scale-125 cursor-pointer"
-                    aria-label={name}
-                    data-interactive="true"
-                    >
-                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 transition-colors duration-300 group-hover:text-accent" />
-                    {/* Icon Expanding Underline */}
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-accent rounded-full transition-all duration-300 group-hover:w-full"></div>
-                    </a>
-            ))}
-            </div>
-            
-            {/* Contact Details - Modern Text with Underline */}
-            <div 
-            className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 opacity-0 animate-fade-in-up pointer-events-auto"
-            style={{ animationDelay: '1s' }}
-            >
-            {contactDetails.map(({ href, icon: Icon, name, isLocation }) => (
-                <a
+      {/* Bottom Right: Job Title */}
+      <div className="absolute bottom-8 right-6 md:bottom-12 md:right-12 z-20 text-right pointer-events-auto">
+         <p className="text-gray-500 font-mono text-xs mb-2 uppercase tracking-widest">Current Role</p>
+         <div className="relative group cursor-default">
+            {/* Updated Font to Mono for Data Engineer vibe */}
+            <h2 className="font-mono font-bold text-2xl md:text-4xl text-white leading-tight tracking-tighter">
+               <span className="text-accent">&lt;</span> 
+               <ScrambleText text={TITLE} className="mx-1" /> 
+               <span className="text-accent">/&gt;</span>
+            </h2>
+            {/* Shiny Underline */}
+            <div className="absolute bottom-0 right-0 w-full h-[2px] bg-white/10 group-hover:bg-accent/50 transition-colors duration-500"></div>
+            <div className="absolute bottom-0 right-0 w-0 h-[2px] bg-accent shadow-[0_0_15px_rgba(249,115,22,1)] transition-all duration-700 group-hover:w-full"></div>
+         </div>
+      </div>
+
+      {/* Top Left: Social Links */}
+      <div className="absolute top-32 left-6 md:top-1/2 md:-translate-y-1/2 md:left-12 z-20 flex flex-row md:flex-col gap-6 pointer-events-auto">
+         {socialLinks.map(({ href, icon: Icon, name }) => (
+            <a
                 key={name}
                 href={href}
-                target={isLocation ? "_blank" : undefined}
-                rel={isLocation ? "noopener noreferrer" : undefined}
-                className="group relative flex items-center gap-3 py-2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative p-2 text-gray-500 hover:text-white transition-colors duration-300 flex items-center"
                 aria-label={name}
-                data-interactive="true"
-                >
-                <Icon className="w-6 h-6 text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" />
-                <span className="font-display text-lg sm:text-xl text-gray-300 group-hover:text-white tracking-wide transition-colors">{name}</span>
-                
-                {/* Shiny Glassy Underline */}
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10 group-hover:bg-accent/50 transition-colors duration-300"></div>
-                <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent shadow-[0_0_10px_rgba(249,115,22,0.8)] transition-all duration-500 group-hover:w-full"></div>
-                </a>
-            ))}
-            </div>
-        </div>
+            >
+                <div className="relative">
+                    <Icon className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110 group-hover:text-accent" />
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[3px] bg-accent rounded-full shadow-[0_0_12px_rgba(249,115,22,0.8)] transition-all duration-300 group-hover:w-full"></div>
+                </div>
+                <span className="absolute left-full ml-4 top-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-md border border-gray-700 text-white text-sm font-bold px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap hidden md:block shadow-sm">
+                    {name}
+                </span>
+            </a>
+         ))}
       </div>
+
     </section>
   );
 };
