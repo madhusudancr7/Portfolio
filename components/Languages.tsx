@@ -9,7 +9,7 @@ const BG_COLORS = ['#e11d48', '#db2777', '#f43f5e', '#fb7185'];
 
 const Languages: React.FC = () => {
   return (
-    <Section id="languages" title="Languages" bgColors={BG_COLORS} speed={2}>
+    <Section id="languages" title="Languages" bgColors={BG_COLORS} speed={0.5}>
       <div className="flex flex-wrap justify-center gap-6 md:gap-12">
         {LANGUAGES_KNOWN.map((language, index) => (
           <div

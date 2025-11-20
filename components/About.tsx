@@ -35,7 +35,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <Section id="about" title="About Me" bgColors={BG_COLORS} speed={2}>
+    <Section id="about" title="About Me" bgColors={BG_COLORS} speed={0.5}>
        <div ref={sectionRef} className="relative">
          <p 
            className={`font-mono text-accent mb-6 text-base md:text-lg opacity-0 ${isVisible ? 'animate-fade-in-up' : ''}`}

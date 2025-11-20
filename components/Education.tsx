@@ -9,7 +9,7 @@ const BG_COLORS = ['#2563eb', '#3b82f6', '#0ea5e9', '#6366f1'];
 
 const Education: React.FC = () => {
   return (
-    <Section id="education" title="Education" bgColors={BG_COLORS} speed={2}>
+    <Section id="education" title="Education" bgColors={BG_COLORS} speed={0.5}>
       <div className="space-y-6">
         {EDUCATION.map((item) => (
           <div 

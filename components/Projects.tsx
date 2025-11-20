@@ -15,7 +15,7 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
   return (
-    <Section id="projects" title="Personal Projects" bgColors={BG_COLORS} speed={2}>
+    <Section id="projects" title="Personal Projects" bgColors={BG_COLORS} speed={0.5}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         {PROJECTS.length > 0 ? PROJECTS.map((project, index) => (
           <div 

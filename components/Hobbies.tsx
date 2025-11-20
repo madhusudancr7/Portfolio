@@ -9,7 +9,7 @@ const BG_COLORS = ['#a21caf', '#d946ef', '#eab308', '#86198f'];
 
 const Hobbies: React.FC = () => {
   return (
-    <Section id="hobbies" title="Hobbies" bgColors={BG_COLORS} speed={2}>
+    <Section id="hobbies" title="Hobbies" bgColors={BG_COLORS} speed={0.5}>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
         {HOBBIES.map((hobby, index) => (
           <div

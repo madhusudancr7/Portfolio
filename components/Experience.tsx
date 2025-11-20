@@ -3,16 +3,16 @@ import React, { useState } from 'react';
 import { EXPERIENCES } from '../constants';
 import Section from './Section';
 
-// Distinct Palette: Amber, Orange, Red, Yellow
+// Swapped Palette: Violet, Purple, Fuchsia, Indigo (was previously in Skills)
 // Moved outside to prevent re-renders
-const BG_COLORS = ['#d97706', '#ea580c', '#b45309', '#f59e0b'];
+const BG_COLORS = ['#7c3aed', '#c026d3', '#4f46e5', '#9333ea'];
 
 const Experience: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeExperience = EXPERIENCES[activeIndex];
   
   return (
-    <Section id="experience" title="Work Experience" bgColors={BG_COLORS} speed={2}>
+    <Section id="experience" title="Work Experience" bgColors={BG_COLORS} speed={0.5}>
       <div 
         className="bg-white/5 p-5 md:p-8 rounded-xl border border-white/10 backdrop-blur-md transition-all duration-300 opacity-0 animate-fade-in-up"
         style={{ animationDelay: `0.1s` }}
